@@ -33,21 +33,21 @@ addresses = [apartment.getText().strip().replace("|", "") for apartment in apart
 
 driver.get(forms_url)
 
-time.sleep(5)
+for i in range(len(links)):
+    time.sleep(5)
 
-input_a = driver.find_element(By.XPATH, value='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input')
-input_b = driver.find_element(By.XPATH, value='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input')
-input_c = driver.find_element(By.XPATH, value='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input')
+    input_a = driver.find_element(By.XPATH, value='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input')
+    input_b = driver.find_element(By.XPATH, value='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input')
+    input_c = driver.find_element(By.XPATH, value='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input')
 
-input_a.send_keys("test")
-input_b.send_keys("money")
-input_c.send_keys("url")
+    input_a.send_keys(addresses[i])
+    input_b.send_keys(prices[i])
+    input_c.send_keys(links[i])
 
-time.sleep(5)
+    time.sleep(5)
+    submit = driver.find_element(By.CSS_SELECTOR, value="div div span span")
+    submit.click()
 
-submit = driver.find_element(By.CSS_SELECTOR, value="div div span span")
-submit.click()
-
-time.sleep(5)
-new_response = driver.find_element(By.CSS_SELECTOR, value="a")
-new_response.click()
+    time.sleep(5)
+    new_response = driver.find_element(By.CSS_SELECTOR, value="a")
+    new_response.click()
